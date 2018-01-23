@@ -39,9 +39,18 @@ public class RobotMap {
 		public static final int RIGHT_ENCODER_TWO = 1; 
 		
 		
+		
 	// Arm
 		public static final int BODY = 1; 
 		public static final int ARM = 2; 
+		
+		public static final int BODY_ENCODER_PORT_ONE = 0; 
+		public static final int BODY_ENCODER_PORT_TWO = 1; 
+		
+		public static final int UP_SWITCH = 0; 
+		public static final int DOWN_SWITCH = 1; 
+
+		
 		
 	// Claw 
 		public static final int PNEUMATIC = 3; 
