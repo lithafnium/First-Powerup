@@ -91,7 +91,19 @@ public class DriveTrain extends Subsystem {
 	public void driveSlow(){
 		robotDrive.tankDrive(0.5, 0.5); 
 	}
+	
+	public double getLeft(){
+		return leftEncoder.getDistance(); 
+	}
+	
+	public double getRight(){
+		return rightEncoder.getDistance(); 
+	}
 
+	public void resetEncoders(){
+		leftEncoder.reset(); 
+		rightEncoder.reset(); 
+	}
 
 	public void updateSmartDashboard(){
 		//		SmartDashboard.putNumber("Ultrasonic sensor one", getDistanceOne()); 
@@ -100,6 +112,10 @@ public class DriveTrain extends Subsystem {
 		//SmartDashboard.putNumber("Drive Encoder One - Right Side", getEncoderOne());
 
 		SmartDashboard.putBoolean("Backwards:" , backwards);  
+    	SmartDashboard.putNumber("Body Encoder:", getLeft()); 
+    	SmartDashboard.putNumber("Body Encoder:", getRight()); 
+
+
 
 
 

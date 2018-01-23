@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -70,6 +71,23 @@ public class Arm extends Subsystem {
     
     public boolean isDown(){
     	return down.get(); 
+    }
+    
+    public double getBodyEncoder(){
+    	return bodyEncoder.getDistance();
+    }
+    
+    public void resetEncoder(){
+    	bodyEncoder.reset();
+    }
+    public void updateSmartDashboard(){
+    	SmartDashboard.putBoolean("Up:", isUp()); 
+    	SmartDashboard.putBoolean("Down:", isDown()); 
+    	
+    	SmartDashboard.putNumber("Body Encoder:", getBodyEncoder()); 
+
+    	
+    	
     }
     
     
