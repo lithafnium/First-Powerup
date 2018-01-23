@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
 import org.usfirst.frc.team3205.robot.subsystems.Claw;
 import org.usfirst.frc.team3205.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3205.robot.subsystems.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static Arm arm; 
 	public static Claw grabby; 
+	public static Vision vision; 
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -42,6 +44,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		vision = new Vision(); 
 		driveTrain = new DriveTrain(); 
 		arm = new Arm(); 
 		grabby = new Claw(); 
