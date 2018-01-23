@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team3205.robot;
 
+import org.usfirst.frc.team3205.robot.commands.cameraOneInit;
+import org.usfirst.frc.team3205.robot.commands.cameraTwoInit;
 import org.usfirst.frc.team3205.robot.commands.switchDirections;
 import org.usfirst.frc.team3205.robot.commands.toggleClaw;
 
@@ -88,7 +90,11 @@ public class OI {
 	
 	public OI(){
 		r1.toggleWhenPressed(new switchDirections());
-		c12.whenPressed(new toggleClaw()); 
+		c1.whenPressed(new toggleClaw()); 
+		c11.toggleWhenPressed(new cameraOneInit());
+		c12.toggleWhenPressed(new cameraTwoInit());
+
+		
 
 	}
 	

@@ -55,5 +55,10 @@ public class RobotMap {
 	// Claw 
 		public static final int PNEUMATIC = 3; 
 		public static boolean open = true; 
+		
+		
+	// vision 
+		public static boolean camOneStart = true; 
+		public static boolean camTwoStart = true; 
 	
 }
