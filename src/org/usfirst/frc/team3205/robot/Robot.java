@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
 import org.usfirst.frc.team3205.robot.subsystems.Claw;
+import org.usfirst.frc.team3205.robot.subsystems.Climber;
 import org.usfirst.frc.team3205.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3205.robot.subsystems.Vision;
 
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
 	public static Arm arm; 
 	public static Claw grabby; 
 	public static Vision vision; 
+	public static Climber climby; 
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -44,6 +46,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		climby = new Climber(); 
 		vision = new Vision(); 
 		driveTrain = new DriveTrain(); 
 		arm = new Arm(); 

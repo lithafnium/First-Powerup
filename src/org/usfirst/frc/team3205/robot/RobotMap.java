@@ -51,7 +51,6 @@ public class RobotMap {
 		public static final int DOWN_SWITCH = 1; 
 
 		
-		
 	// Claw 
 		public static final int PNEUMATIC = 3; 
 		public static boolean open = true; 
@@ -60,5 +59,9 @@ public class RobotMap {
 	// vision 
 		public static boolean camOneStart = true; 
 		public static boolean camTwoStart = true; 
+		
+	// Climber 
+		public static final int CLIMBER = 0; 
+		public static final double CLIMB_SPEED = 0.5; 
 	
 }
