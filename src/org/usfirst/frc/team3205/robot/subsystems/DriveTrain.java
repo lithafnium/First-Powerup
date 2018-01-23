@@ -3,6 +3,7 @@ package org.usfirst.frc.team3205.robot.subsystems;
 import org.usfirst.frc.team3205.robot.RobotMap;
 import org.usfirst.frc.team3205.robot.commands.drive;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -19,12 +20,15 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	private SpeedController topLeft; 
-	private SpeedController topRight;
-	private SpeedController bottomLeft; 
-	private SpeedController bottomRight;
+	private SpeedController frontLeft; 
+	private SpeedController frontRight;
+	private SpeedController backLeft; 
+	private SpeedController backRight;
 	SpeedControllerGroup left; 
 	SpeedControllerGroup right; 
+	
+	Encoder leftEncoder; 
+	Encoder rightEncoder; 
 
 
 	public boolean backwards = true; 
@@ -33,13 +37,20 @@ public class DriveTrain extends Subsystem {
 	DifferentialDrive robotDrive; 
 
 	public DriveTrain(){
-		topLeft = new Talon(RobotMap.FRONT_LEFT_DRIVETRAIN_MOTOR); 
-		bottomLeft = new Talon(RobotMap.BACK_LEFT_DRIVETRAIN_MOTOR); 
-		left = new SpeedControllerGroup(topLeft, bottomLeft); 
+		
+		//Encoders
+		leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_ONE, RobotMap.LEFT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
+		rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_ONE, RobotMap.RIGHT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
+		
+		//Left drive wheels
+		frontLeft = new Talon(RobotMap.FRONT_LEFT_DRIVETRAIN_MOTOR); 
+		backLeft = new Talon(RobotMap.BACK_LEFT_DRIVETRAIN_MOTOR); 
+		left = new SpeedControllerGroup(frontLeft, backLeft); 
 
-		topRight = new Talon(RobotMap.FRONT_RIGHT_DRIVETRAIN_MOTOR); 
-		bottomRight = new Talon(RobotMap.BACK_RIGHT_DRIVETRAIN_MOTOR);
-		right = new SpeedControllerGroup(topRight, bottomRight); 
+		//Right drive wheels 
+		frontRight = new Talon(RobotMap.FRONT_RIGHT_DRIVETRAIN_MOTOR); 
+		backRight = new Talon(RobotMap.BACK_RIGHT_DRIVETRAIN_MOTOR);
+		right = new SpeedControllerGroup(frontRight, backRight); 
 
 
 		robotDrive = new DifferentialDrive(left, right); 
@@ -60,10 +71,10 @@ public class DriveTrain extends Subsystem {
 	}
 	public void driveNow(Joystick left, Joystick right){
 		
-		topLeft.setInverted(backwards);
-		bottomLeft.setInverted(backwards);
-		topRight.setInverted(backwards);
-		bottomRight.setInverted(backwards);
+		frontLeft.setInverted(backwards);
+		backLeft.setInverted(backwards);
+		frontRight.setInverted(backwards);
+		backRight.setInverted(backwards);
 		if(backwards) robotDrive.tankDrive(left.getY(), right.getY(), true); 
 		else robotDrive.tankDrive(right.getY(),  left.getY(), true);
 		

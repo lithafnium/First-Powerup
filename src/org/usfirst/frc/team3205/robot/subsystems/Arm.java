@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,6 +20,7 @@ public class Arm extends Subsystem {
 	
 	SpeedController body; 
 	SpeedController arm; 
+	
 	//TalonSRX lowerArm; 
 //	WPI_TalonSRX lowerarm; 
 	//TalonSRX upperArm; 
@@ -29,6 +31,7 @@ public class Arm extends Subsystem {
 
 	public Arm(){
 //		lowerarm = new WPI_TalonSRX(2); 
+		body = new Talon(RobotMap.BODY_MOTOR); 
 		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
 		up = new DigitalInput(RobotMap.UP_SWITCH); 
 		down = new DigitalInput(RobotMap.DOWN_SWITCH); 
@@ -36,6 +39,37 @@ public class Arm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void raiseBody(){
+    	body.set(0.8);
+    }
+    
+    public void lowerBody(){
+    	body.set(-0.8);
+    }
+    public void bodyStop(){
+    	body.set(0.0);
+    }
+    
+    public void raiseArm(){
+    	
+    }
+    
+    public void lowerArm(){
+    	
+    }
+    
+    public void armStop(){
+    	
+    }
+    
+    public boolean isUp(){
+    	return up.get(); 
+    }
+    
+    public boolean isDown(){
+    	return down.get(); 
     }
     
     

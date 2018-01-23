@@ -41,8 +41,8 @@ public class RobotMap {
 		
 		
 	// Arm
-		public static final int BODY = 1; 
-		public static final int ARM = 2; 
+		public static final int BODY_MOTOR = 1; 
+		public static final int ARM_MOTOR = 2; 
 		
 		public static final int BODY_ENCODER_PORT_ONE = 0; 
 		public static final int BODY_ENCODER_PORT_TWO = 1; 
