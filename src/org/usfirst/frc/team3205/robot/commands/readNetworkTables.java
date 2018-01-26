@@ -27,16 +27,13 @@ public class readNetworkTables extends Command {
     	Robot.vision.widthTable = Robot.vision.table.getEntry("width");
     	Robot.vision.heightTable = Robot.vision.table.getEntry("height"); 
     	
+    	
+    	// parameters are just the default if no array is found 
     	Robot.vision.area = Robot.vision.areaTable.getDoubleArray(new double[1]); 
     	Robot.vision.centerX = Robot.vision.centerXTable.getDoubleArray(new double[1]); 
     	Robot.vision.centerY = Robot.vision.centerYTable.getDoubleArray(new double[1]); 
     	Robot.vision.width = Robot.vision.widthTable.getDoubleArray(new double[1]); 
     	Robot.vision.height = Robot.vision.heightTable.getDoubleArray(new double[1]); 
-
-
-
-
-
 
 
 
