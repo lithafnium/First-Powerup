@@ -2,6 +2,8 @@ package org.usfirst.frc.team3205.robot.subsystems;
 
 import org.usfirst.frc.team3205.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -19,23 +21,22 @@ public class Arm extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedController body; 
-	SpeedController arm; 
-	
-	//TalonSRX lowerArm; 
-//	WPI_TalonSRX lowerarm; 
-	//TalonSRX upperArm; 
+	SpeedController body; 	
+	WPI_TalonSRX arm; 
+ 
 	Encoder bodyEncoder;
 	
 	DigitalInput up; 
 	DigitalInput down; 
 
 	public Arm(){
-//		lowerarm = new WPI_TalonSRX(2); 
+		arm = new WPI_TalonSRX(0); 
 		body = new Talon(RobotMap.BODY_MOTOR); 
 		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
 		up = new DigitalInput(RobotMap.UP_SWITCH); 
 		down = new DigitalInput(RobotMap.DOWN_SWITCH); 
+		
+		arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -54,14 +55,17 @@ public class Arm extends Subsystem {
     }
     
     public void raiseArm(){
+    	arm.set(ControlMode.PercentOutput, 0.5);
     	
     }
     
     public void lowerArm(){
+    	arm.set(ControlMode.PercentOutput, -0.5);
     	
     }
     
     public void armStop(){
+    	arm.set(ControlMode.PercentOutput, 0.0);
     	
     }
     
@@ -77,6 +81,10 @@ public class Arm extends Subsystem {
     	return bodyEncoder.getDistance();
     }
     
+    public double getArmEncoder(){
+    	return arm.getSensorCollection().getQuadraturePosition();
+    }
+    
     public void resetEncoder(){
     	bodyEncoder.reset();
     }
@@ -85,6 +93,7 @@ public class Arm extends Subsystem {
     	SmartDashboard.putBoolean("Down:", isDown()); 
     	
     	SmartDashboard.putNumber("Body Encoder:", getBodyEncoder()); 
+    	SmartDashboard.putNumber("Arm Encoder:", getArmEncoder()); 
 
     	
     	

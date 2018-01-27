@@ -3,6 +3,7 @@ package org.usfirst.frc.team3205.robot.subsystems;
 import org.usfirst.frc.team3205.robot.RobotMap;
 import org.usfirst.frc.team3205.robot.commands.drive;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -30,8 +31,9 @@ public class DriveTrain extends Subsystem {
 	Encoder leftEncoder; 
 	Encoder rightEncoder; 
 
+	public ADXRS450_Gyro gyroSensor; 
 
-	public boolean backwards = true; 
+	public boolean backwards = false; 
 
 //	RobotDrive robotDrive; 
 	DifferentialDrive robotDrive; 
@@ -56,6 +58,10 @@ public class DriveTrain extends Subsystem {
 		robotDrive = new DifferentialDrive(left, right); 
 //		robotDrive = new RobotDrive(topLeft, bottomLeft,  topRight, bottomRight); 
 		robotDrive.setSafetyEnabled(false);
+		
+		gyroSensor = new ADXRS450_Gyro(); 
+		gyroSensor.calibrate();
+		gyroSensor.reset(); 
 
 
 	}
@@ -105,6 +111,13 @@ public class DriveTrain extends Subsystem {
 		rightEncoder.reset(); 
 	}
 
+	public double getAngle(){
+		return gyroSensor.getAngle();
+	}
+	
+	public void resetGyro(){
+		gyroSensor.reset(); 
+	}
 	public void updateSmartDashboard(){
 		//		SmartDashboard.putNumber("Ultrasonic sensor one", getDistanceOne()); 
 		//		SmartDashboard.putNumber("Ultrasonic sensor two", getDistanceTwo()); 
@@ -114,6 +127,8 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putBoolean("Backwards:" , backwards);  
     	SmartDashboard.putNumber("Body Encoder:", getLeft()); 
     	SmartDashboard.putNumber("Body Encoder:", getRight()); 
+    	
+    	SmartDashboard.putNumber("Angle:", getAngle()); 
 
 
 
