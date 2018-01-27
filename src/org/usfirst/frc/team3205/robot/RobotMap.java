@@ -63,5 +63,16 @@ public class RobotMap {
 	// Climber 
 		public static final int CLIMBER = 0; 
 		public static final double CLIMB_SPEED = 0.5; 
+		
+	// Auto 
+		public static final double kP = 0.5; 
+		public static final double kI = 0.3; 
+		public static final double kD = 0.4; 
+		
+		public static final double TOLERANCE = 0.5; 
+		public static final double ALIGN_STEADY_TIME = 100; 
+		
+		public static final double SPEED = 0.50; 
+ 
 	
 }
