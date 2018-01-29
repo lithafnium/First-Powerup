@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3205.robot.commands.encoderDrivetrainReset;
+import org.usfirst.frc.team3205.robot.commands.encoderGyroReset;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
 import org.usfirst.frc.team3205.robot.subsystems.Claw;
 import org.usfirst.frc.team3205.robot.subsystems.Climber;
@@ -55,6 +57,8 @@ public class Robot extends TimedRobot {
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 //		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Reset Gyro", new encoderGyroReset());
+		SmartDashboard.putData("Reset Drivetrain", new encoderDrivetrainReset());
 	}
 
 	/**
@@ -64,6 +68,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		
 
 	}
 
