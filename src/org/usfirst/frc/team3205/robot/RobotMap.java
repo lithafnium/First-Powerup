@@ -73,6 +73,17 @@ public class RobotMap {
 		public static final double ALIGN_STEADY_TIME = 100; 
 		
 		public static final double SPEED = 0.50; 
+		
+		public static final double ANGLE = 90.0; 
+		
+		
+		public class AutoDistances{
+			public static final double kP = 0.0; 
+			public static final double kI = 0.0; 
+
+			public static final double kD = 0.0; 
+
+		}
  
 	
 }

@@ -6,6 +6,7 @@ import org.usfirst.frc.team3205.robot.commands.drive;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
@@ -25,11 +26,11 @@ public class DriveTrain extends Subsystem {
 	private SpeedController frontRight;
 	private SpeedController backLeft; 
 	private SpeedController backRight;
-	SpeedControllerGroup left; 
-	SpeedControllerGroup right; 
+	public SpeedControllerGroup left; 
+	public SpeedControllerGroup right; 
 	
-	Encoder leftEncoder; 
-	Encoder rightEncoder; 
+	public Encoder leftEncoder; 
+	public Encoder rightEncoder; 
 
 	public ADXRS450_Gyro gyroSensor; 
 
@@ -43,6 +44,8 @@ public class DriveTrain extends Subsystem {
 		//Encoders
 		leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_ONE, RobotMap.LEFT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
 		rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_ONE, RobotMap.RIGHT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
+		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 		//Left drive wheels
 		frontLeft = new Talon(RobotMap.FRONT_LEFT_DRIVETRAIN_MOTOR); 
@@ -117,6 +120,14 @@ public class DriveTrain extends Subsystem {
 	
 	public void resetGyro(){
 		gyroSensor.reset(); 
+	}
+	
+	public void setLeftMotors(double speed){
+		left.set(speed);
+	}
+	
+	public void setRightMotors(double speed){
+		right.set(speed);
 	}
 	public void updateSmartDashboard(){
 		//		SmartDashboard.putNumber("Ultrasonic sensor one", getDistanceOne()); 

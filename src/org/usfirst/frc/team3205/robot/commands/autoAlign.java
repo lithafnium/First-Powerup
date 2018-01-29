@@ -24,11 +24,11 @@ public class autoAlign extends Command implements PIDOutput{
 	private long startTimeMillis; 
 	
 	
-    public autoAlign() {
+    public autoAlign(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain); 
-    	angle = 90.0; 
+    	this.angle = angle; 
     }
 
     // Called just before this Command runs the first time
