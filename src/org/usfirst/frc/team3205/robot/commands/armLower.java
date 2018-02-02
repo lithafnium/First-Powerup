@@ -17,16 +17,19 @@ public class armLower extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arm.raiseArm(); 
+    	Robot.arm.lowerArm(); 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.arm.armIsDown()){
+    		Robot.arm.armStop();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.armIsDown();
     }
 
     // Called once after isFinished returns true

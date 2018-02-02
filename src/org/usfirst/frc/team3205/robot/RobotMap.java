@@ -41,14 +41,20 @@ public class RobotMap {
 		
 		
 	// Arm
-		public static final int BODY_MOTOR = 1; 
+		public static final int BODY_MOTOR_ONE = 1; 
+		public static final int BODY_MOTOR_TWO = 1; 
+
 		public static final int ARM_MOTOR = 2; 
 		
 		public static final int BODY_ENCODER_PORT_ONE = 0; 
 		public static final int BODY_ENCODER_PORT_TWO = 1; 
 		
-		public static final int UP_SWITCH = 0; 
-		public static final int DOWN_SWITCH = 1; 
+		public static final int BODY_UP_SWITCH = 0; 
+		public static final int BODY_DOWN_SWITCH = 1;
+		public static final int ARM_UP_SWITCH = 0; 
+		public static final int ARM_DOWN_SWITCH = 1; 
+		
+		
 
 		
 	// Claw 

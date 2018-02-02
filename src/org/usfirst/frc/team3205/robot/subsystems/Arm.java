@@ -21,20 +21,31 @@ public class Arm extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedController body; 	
+	SpeedController body1;
+	SpeedController body2; 
 	WPI_TalonSRX arm; 
  
 	Encoder bodyEncoder;
 	
-	DigitalInput up; 
-	DigitalInput down; 
+	DigitalInput bodyUp; 
+	DigitalInput bodyDown; 
+	
+	DigitalInput armUp; 
+	DigitalInput armDown; 
 
 	public Arm(){
 		arm = new WPI_TalonSRX(0); 
-		body = new Talon(RobotMap.BODY_MOTOR); 
+		body1 = new Talon(RobotMap.BODY_MOTOR_ONE); 
+		body2 = new Talon(RobotMap.BODY_MOTOR_TWO); 
+
 		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
-		up = new DigitalInput(RobotMap.UP_SWITCH); 
-		down = new DigitalInput(RobotMap.DOWN_SWITCH); 
+		
+		bodyUp = new DigitalInput(RobotMap.BODY_UP_SWITCH); 
+		bodyDown = new DigitalInput(RobotMap.BODY_DOWN_SWITCH); 
+		armUp = new DigitalInput(RobotMap.ARM_UP_SWITCH); 
+		armDown = new DigitalInput(RobotMap.ARM_DOWN_SWITCH); 
+
+		
 		
 		arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 	}
@@ -44,14 +55,20 @@ public class Arm extends Subsystem {
     }
     
     public void raiseBody(){
-    	body.set(0.8);
+    	body1.set(0.8);
+    	body2.set(0.8);
+
     }
     
     public void lowerBody(){
-    	body.set(-0.8);
+    	body1.set(-0.8);
+    	body2.set(-0.8);
+
     }
     public void bodyStop(){
-    	body.set(0.0);
+    	body1.set(0.0);
+    	body2.set(0.0);
+
     }
     
     public void raiseArm(){
@@ -68,15 +85,23 @@ public class Arm extends Subsystem {
     	arm.set(ControlMode.PercentOutput, 0.0);
     	
     }
-    
-    public boolean isUp(){
-    	return up.get(); 
+    // BODY
+    public boolean bodyIsUp(){
+    	return bodyUp.get(); 
     }
     
-    public boolean isDown(){
-    	return down.get(); 
+    public boolean bodyIsDown(){
+    	return bodyDown.get(); 
+    }
+    // ARM
+    public boolean armIsUp(){
+    	return bodyUp.get(); 
     }
     
+    public boolean armIsDown(){
+    	return bodyDown.get(); 
+    }
+    //ENCODERS
     public double getBodyEncoder(){
     	return bodyEncoder.getDistance();
     }
@@ -89,8 +114,11 @@ public class Arm extends Subsystem {
     	bodyEncoder.reset();
     }
     public void updateSmartDashboard(){
-    	SmartDashboard.putBoolean("Up:", isUp()); 
-    	SmartDashboard.putBoolean("Down:", isDown()); 
+    	SmartDashboard.putBoolean("Body Up:", bodyIsUp()); 
+    	SmartDashboard.putBoolean("Body Down:", bodyIsDown()); 
+    	
+    	SmartDashboard.putBoolean("Arm Up:", armIsUp()); 
+    	SmartDashboard.putBoolean("Arm Down:", armIsDown()); 
     	
     	SmartDashboard.putNumber("Body Encoder:", getBodyEncoder()); 
     	SmartDashboard.putNumber("Arm Encoder:", getArmEncoder()); 
