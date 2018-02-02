@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class switchDirections extends Command {
+public class toggleDirections extends Command {
 
-    public switchDirections() {
+    public toggleDirections() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

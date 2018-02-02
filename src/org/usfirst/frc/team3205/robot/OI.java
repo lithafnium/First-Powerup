@@ -7,10 +7,11 @@
 
 package org.usfirst.frc.team3205.robot;
 
-import org.usfirst.frc.team3205.robot.commands.cameraOneInit;
-import org.usfirst.frc.team3205.robot.commands.cameraTwoInit;
-import org.usfirst.frc.team3205.robot.commands.switchDirections;
+
+import org.usfirst.frc.team3205.robot.commands.autoAlign;
+import org.usfirst.frc.team3205.robot.commands.toggleCameras;
 import org.usfirst.frc.team3205.robot.commands.toggleClaw;
+import org.usfirst.frc.team3205.robot.commands.toggleDirections;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -89,10 +90,13 @@ public class OI {
 		Button c12 = new JoystickButton(controller, 12);
 	
 	public OI(){
-		r1.toggleWhenPressed(new switchDirections());
-		c1.whenPressed(new toggleClaw()); 
-		c11.toggleWhenPressed(new cameraOneInit());
-		c12.toggleWhenPressed(new cameraTwoInit());
+		r1.toggleWhenPressed(new toggleDirections());
+		c6.whenPressed(new toggleClaw()); 
+		c4.whenPressed(new autoAlign(90.0));
+		c5.whenPressed(new toggleCameras());
+		
+		
+		
 		
 	
 
