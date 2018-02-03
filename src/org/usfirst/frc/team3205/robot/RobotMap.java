@@ -86,6 +86,33 @@ public class RobotMap {
 		
 		public static final double ANGLE = 90.0; 
 		
+		public static String gameData = ""; 
+		
+		public static boolean switchLeft = false; 
+		public static boolean switchRight = false; 
+		
+		// left auto ditsances --> when we are placed on the left side
+		public class placedLeft{
+			public static final double DRIVE_FORWARD = 0.0;  // drive forward to the forward position
+			public static final double DRIVE_FORWARD_FAR = 0.0;  // drive forward to the forward position
+			
+			public static final double DRIVE_RIGHT = 0.0; // if we are placed on the right side
+			public static final double DRIVE_RIGHT_FAR = 0.0; // if we are placed on the right side
+
+			
+
+		}
+		// right auto --> when we are placed on the right side
+		public class placedRight{
+			public static final double DRIVE_FORWARD = 0.0;  // drive forward to the forward position
+			public static final double DRIVE_FORWARD_FAR = 0.0;  // drive forward to the forward position
+			
+			public static final double DRIVE_LEFT = 0.0; // if we are placed on the right side
+			public static final double DRIVE_LEFT_FAR = 0.0; // if we are placed on the right side
+		}
+		
+		
+	
 		
 		public class AutoDistances{
 			public static final double kP = 0.0; 

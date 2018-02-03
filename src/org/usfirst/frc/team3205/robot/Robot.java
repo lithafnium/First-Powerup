@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3205.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -91,6 +92,15 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
+		
+		// gets the game data
+		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
+		// if the switch is on the left side of the field 
+		if(RobotMap.gameData.charAt(0) == 'L'){
+			RobotMap.switchLeft = true; 
+		} else RobotMap.switchRight = true; 
+		
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
