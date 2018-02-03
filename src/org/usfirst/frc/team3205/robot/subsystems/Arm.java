@@ -70,20 +70,22 @@ public class Arm extends Subsystem {
     	body2.set(0.0);
 
     }
-    
+    public void moveArm(double distance){
+    	arm.set(ControlMode.Position, distance);
+    }
     public void raiseArm(){
-    	arm.set(ControlMode.PercentOutput, 0.5);
-    	
+//    	arm.set(ControlMode.PercentOutput, 0.5);
+    	arm.set(0.5); 	
     }
     
     public void lowerArm(){
-    	arm.set(ControlMode.PercentOutput, -0.5);
-    	
+//    	arm.set(ControlMode.PercentOutput, -0.5);
+    	arm.set(-0.5);
     }
     
     public void armStop(){
-    	arm.set(ControlMode.PercentOutput, 0.0);
-    	
+//    	arm.set(ControlMode.PercentOutput, 0.0);
+    	arm.set(0.0);
     }
     // BODY
     public boolean bodyIsUp(){
