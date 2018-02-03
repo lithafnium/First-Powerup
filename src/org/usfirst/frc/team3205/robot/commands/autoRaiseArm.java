@@ -23,11 +23,12 @@ public class autoRaiseArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.arm.armIsUp()) Robot.arm.armStop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.arm.armIsUp() || Robot.arm.getArmEncoder() >= distance;
     }
 
     // Called once after isFinished returns true

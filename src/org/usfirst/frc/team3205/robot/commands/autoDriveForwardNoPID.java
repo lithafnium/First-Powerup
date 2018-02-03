@@ -31,7 +31,7 @@ public class autoDriveForwardNoPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.driveTrain.getLeft() + Robot.driveTrain.getRight()) - distance == encoderCount;
+        return (Robot.driveTrain.getLeft() + Robot.driveTrain.getRight())/2 - distance >= encoderCount;
     }
 
     // Called once after isFinished returns true
