@@ -27,19 +27,21 @@ public class autoPlacedRightGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	// if the switch is on the left and the robot is placed on the right 
-    	// if the robot is placed on the left side and the switch is on the left side 
-    	if(RobotMap.switchLeft){
+    	// if the robot is placed on the right side and the switch is on the right side 
+    	if(RobotMap.switchRight){
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
     		//    		addSequentialNoPID(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
 
     		addSequential(new autoAlign(90.0)); 
+    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
+
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_LEFT)); 
     		addSequential(new clawOpen()); 
 
     		
     	}
-    	else{ // RobotMap.switchRight 
-        	// if the robot is placed on the left side and the switch is on the right side 
+    	else{ // RobotMap.switchLeft 
+        	// if the robot is placed on the right side and the switch is on the left side 
 
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD_FAR));
     		//    		addSequentialNoPID(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD_FAR));
@@ -47,6 +49,10 @@ public class autoPlacedRightGroup extends CommandGroup {
     		addSequential(new autoAlign(-90.0)); 
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_LEFT_FAR)); 
     		addSequential(new autoAlign(-90.0)); 
+    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
+    		addSequential(new autoDriveForward(RobotMap.DRIVE_SHORT)); 
+
+
     		addSequential(new clawOpen()); 
     		
     	}

@@ -88,6 +88,8 @@ public class RobotMap {
 		
 		public static String gameData = ""; 
 		
+		public static double RAISE_ARM = 0.0; 
+		public static double DRIVE_SHORT = 0.0; 
 		public static boolean switchLeft = false; 
 		public static boolean switchRight = false; 
 		
