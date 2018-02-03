@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3205.robot.commands.autoPlacedLeftGroup;
+import org.usfirst.frc.team3205.robot.commands.autoPlacedRightGroup;
+import org.usfirst.frc.team3205.robot.commands.autoDriveForwardNoPID;
+
 import org.usfirst.frc.team3205.robot.commands.encoderDrivetrainReset;
 import org.usfirst.frc.team3205.robot.commands.encoderGyroReset;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
@@ -56,8 +60,12 @@ public class Robot extends TimedRobot {
 		grabby = new Claw(); 
 		oi = new OI();
 //		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addObject("Auto Drive foward (rip)", new autoDriveForwardNoPID(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
+		m_chooser.addObject("Robot placed left", new autoPlacedLeftGroup()); 
+		m_chooser.addObject("Robot placed right", new autoPlacedRightGroup()); 
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
-//		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", m_chooser);
 		SmartDashboard.putData("Reset Gyro", new encoderGyroReset());
 		SmartDashboard.putData("Reset Drivetrain", new encoderDrivetrainReset());
 	}

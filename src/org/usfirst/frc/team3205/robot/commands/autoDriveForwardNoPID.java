@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class audoDriveForwardNoPID extends Command {
+public class autoDriveForwardNoPID extends Command {
 	public double distance; 
 	public double encoderCount; 
-    public audoDriveForwardNoPID(double distance) {
+    public autoDriveForwardNoPID(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain); 
