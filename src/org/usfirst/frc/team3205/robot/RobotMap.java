@@ -70,6 +70,10 @@ public class RobotMap {
 		public static final int CLIMBER = 0; 
 		public static final double CLIMB_SPEED = 0.5; 
 		
+		public static final int CLIMBER_ONE = 0; 
+		public static final int CLIMBER_TWO = 1; 
+		
+		
 	// Auto 
 		public static final double kP = 0.5; 
 		public static final double kI = 0.3; 

@@ -34,7 +34,7 @@ public class Arm extends Subsystem {
 	DigitalInput armDown; 
 
 	public Arm(){
-		arm = new WPI_TalonSRX(0); 
+		arm = new WPI_TalonSRX(RobotMap.ARM_MOTOR); 
 		body1 = new Talon(RobotMap.BODY_MOTOR_ONE); 
 		body2 = new Talon(RobotMap.BODY_MOTOR_TWO); 
 
