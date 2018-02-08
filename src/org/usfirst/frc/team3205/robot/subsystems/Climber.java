@@ -19,6 +19,8 @@ public class Climber extends Subsystem {
 //	SpeedController climberOne; 
 	WPI_TalonSRX climberOne; 
 	WPI_TalonSRX climberTwo; 
+	
+	Talon claw; 
 
 
 	
@@ -26,7 +28,8 @@ public class Climber extends Subsystem {
 	public Climber(){
 		climberOne = new WPI_TalonSRX(RobotMap.CLIMBER_ONE);
 		climberTwo = new WPI_TalonSRX(RobotMap.CLIMBER_TWO); 
-
+		
+		claw = new Talon(RobotMap.CLAW); 
 		
 	}
 
@@ -45,6 +48,14 @@ public class Climber extends Subsystem {
     	climberOne.set(ControlMode.PercentOutput,0.0);
     	climberTwo.set(ControlMode.PercentOutput,0.0);
 
+    }
+    
+    public void expandClaw(){
+    	claw.set(0.60); 
+    }
+    
+    public void retractClaw(){
+    	claw.set(-0.60);
     }
 }
 

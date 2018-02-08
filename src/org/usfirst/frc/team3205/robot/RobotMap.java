@@ -73,6 +73,8 @@ public class RobotMap {
 		public static final int CLIMBER_ONE = 0; 
 		public static final int CLIMBER_TWO = 1; 
 		
+		public static final int CLAW = 0; 
+		
 		
 	// Auto 
 		public static final double kP = 0.5; 
@@ -113,8 +115,6 @@ public class RobotMap {
 			public static final double DRIVE_LEFT_FAR = 0.0; // if we are placed on the right side
 		}
 		
-		
-	
 		
 		public class AutoDistances{
 			public static final double kP = 0.0; 
