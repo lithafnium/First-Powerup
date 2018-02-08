@@ -50,11 +50,11 @@ public class Climber extends Subsystem {
 
     }
     
-    public void expandClaw(){
+    public void expandHook(){
     	claw.set(0.60); 
     }
     
-    public void retractClaw(){
+    public void retractHook(){
     	claw.set(-0.60);
     }
 }
