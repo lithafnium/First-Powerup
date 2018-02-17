@@ -57,18 +57,18 @@ public class autoAlign extends Command implements PIDOutput{
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(!controller.onTarget()){
-        	onTargetMillis = 0; 
-        	return false; 
-        }
-        if(onTargetMillis == 0){
-        	onTargetMillis = System.currentTimeMillis(); 
-        }
+//        if(!controller.onTarget()){
+//        	onTargetMillis = 0; 
+//        	return false; 
+//        }
+//        if(onTargetMillis == 0){
+//        	onTargetMillis = System.currentTimeMillis(); 
+//        }
         
-        if(controller.onTarget()) return true; 
+//        if(controller.onTarget()) return true; 
         
-        return System.currentTimeMillis() > onTargetMillis + 50; 
-//        return controller.onTarget(); 
+//        return System.currentTimeMillis() > onTargetMillis + 50; 
+        return controller.onTarget(); 
     }
 
     // Called once after isFinished returns true
@@ -86,8 +86,6 @@ public class autoAlign extends Command implements PIDOutput{
     	synchronized(this){
     		pidOut = output; 
     		SmartDashboard.putNumber("pidOut:", pidOut); 
-    		
-    		
     	}
     }
 }

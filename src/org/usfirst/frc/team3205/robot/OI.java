@@ -8,7 +8,12 @@
 package org.usfirst.frc.team3205.robot;
 
 
+import org.usfirst.frc.team3205.robot.commands.armLower;
+import org.usfirst.frc.team3205.robot.commands.armRaise;
 import org.usfirst.frc.team3205.robot.commands.autoAlign;
+import org.usfirst.frc.team3205.robot.commands.bodyLower;
+import org.usfirst.frc.team3205.robot.commands.bodyRaise;
+import org.usfirst.frc.team3205.robot.commands.climb;
 import org.usfirst.frc.team3205.robot.commands.toggleCameras;
 import org.usfirst.frc.team3205.robot.commands.toggleClaw;
 import org.usfirst.frc.team3205.robot.commands.toggleDirections;
@@ -50,7 +55,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 
-	public static Joystick right = new Joystick(0);
+	public static Joystick right = new Joystick(1);
 		Button r1 = new JoystickButton(right, 1);
 		Button r2 = new JoystickButton(right, 2);
 		Button r3 = new JoystickButton(right, 3);
@@ -63,7 +68,7 @@ public class OI {
 		Button r10 = new JoystickButton(right, 10);
 		Button r11 = new JoystickButton(right, 11);
 
-	public static Joystick left = new Joystick(1);
+	public static Joystick left = new Joystick(0);
 		Button l1 = new JoystickButton(left, 1);
 		Button l2 = new JoystickButton(left, 2);
 		Button l3 = new JoystickButton(left, 3);
@@ -91,13 +96,21 @@ public class OI {
 	
 	public OI(){
 		r1.toggleWhenPressed(new toggleDirections());
-		c6.whenPressed(new toggleClaw()); 
-		c4.whenPressed(new autoAlign(90.0));
-		c5.whenPressed(new toggleCameras());
+		//c6.whenPressed(new toggleClaw()); 
+//		c4.whenPressed(new autoAlign(90.0));
 		
+		// arm 
+		c6.whileHeld(new armRaise());
+		c8.whileHeld(new armLower()); 
+
+		c5.whileHeld(new bodyRaise()); 
+		c7.whileHeld(new bodyLower()); 
 		
-		
-		
+		c1.whenPressed(new toggleClaw());
+//		c2.whenPressed(new toggleCameras());
+		c3.whileHeld(new climb()); 
+
+
 	
 
 		

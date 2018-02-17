@@ -22,14 +22,19 @@ public class armRaise extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.armIsUp()){
-    		Robot.arm.armStop();
-    	}
+//    	if(Robot.arm.armFwd()){
+//		Robot.arm.armStop();
+//	}
+//	if(Robot.arm.armRev()){
+//	Robot.arm.armStop();
+//}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.armIsUp();
+//      return Robot.arm.armFwd();
+//    return Robot.arm.armRev();    	
+    	return false;
     }
 
     // Called once after isFinished returns true

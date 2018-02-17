@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class autoDriveForwardNoPID extends Command {
 	public double distance; 
 	public double encoderCount; 
+	
     public autoDriveForwardNoPID(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -31,7 +32,7 @@ public class autoDriveForwardNoPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.driveTrain.getLeft() + Robot.driveTrain.getRight())/2 - distance >= encoderCount;
+        return (Robot.driveTrain.getLeft() + Robot.driveTrain.getRight())/2 - encoderCount >= distance;
     }
 
     // Called once after isFinished returns true

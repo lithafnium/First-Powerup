@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3205.robot.commands.autoDriveForward;
 import org.usfirst.frc.team3205.robot.commands.autoPlacedLeftGroup;
 import org.usfirst.frc.team3205.robot.commands.autoPlacedRightGroup;
 import org.usfirst.frc.team3205.robot.commands.autoDriveForwardNoPID;
-
 import org.usfirst.frc.team3205.robot.commands.encoderDrivetrainReset;
 import org.usfirst.frc.team3205.robot.commands.encoderGyroReset;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
@@ -54,12 +54,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		climby = new Climber(); 
-		vision = new Vision(); 
+		//vision = new Vision(); 
 		driveTrain = new DriveTrain(); 
 		arm = new Arm(); 
 		grabby = new Claw(); 
 		oi = new OI();
-//		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addDefault("Default Auto", new autoDriveForward(RobotMap.DRIVE_SHORT));
 		m_chooser.addObject("Auto Drive foward (rip)", new autoDriveForwardNoPID(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
 		m_chooser.addObject("Robot placed left", new autoPlacedLeftGroup()); 
 		m_chooser.addObject("Robot placed right", new autoPlacedRightGroup()); 
@@ -161,5 +161,7 @@ public class Robot extends TimedRobot {
 	
 	public void updateSmartDashboard(){
 		driveTrain.updateSmartDashboard();
+		grabby.updateSmartDashboard();
+		//arm.updateSmartDashboard(); 
 	}
 }

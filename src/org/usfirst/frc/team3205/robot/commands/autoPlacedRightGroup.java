@@ -32,7 +32,7 @@ public class autoPlacedRightGroup extends CommandGroup {
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
     		//    		addSequentialNoPID(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
 
-    		addSequential(new autoAlign(90.0)); 
+    		addSequential(new autoAlign(-90.0)); 
     		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
 
     		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_LEFT)); 

@@ -20,7 +20,7 @@ public class Climber extends Subsystem {
 	WPI_TalonSRX climberOne; 
 	WPI_TalonSRX climberTwo; 
 	
-	Talon claw; 
+	Talon hook; 
 
 
 	
@@ -29,7 +29,7 @@ public class Climber extends Subsystem {
 		climberOne = new WPI_TalonSRX(RobotMap.CLIMBER_ONE);
 		climberTwo = new WPI_TalonSRX(RobotMap.CLIMBER_TWO); 
 		
-		claw = new Talon(RobotMap.CLAW); 
+		hook = new Talon(RobotMap.hook); 
 		
 	}
 
@@ -51,11 +51,11 @@ public class Climber extends Subsystem {
     }
     
     public void expandHook(){
-    	claw.set(0.60); 
+    	hook.set(0.60); 
     }
     
     public void retractHook(){
-    	claw.set(-0.60);
+    	hook.set(-0.60);
     }
 }
 

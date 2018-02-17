@@ -5,6 +5,7 @@ import org.usfirst.frc.team3205.robot.commands.openSesame;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,7 +32,11 @@ public class Claw extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new openSesame()); 
+//    	setDefaultCommand(new openSesame()); 
+    }
+    
+    public void updateSmartDashboard(){
+    	SmartDashboard.putBoolean("Open:", RobotMap.open); 
     }
 }
 

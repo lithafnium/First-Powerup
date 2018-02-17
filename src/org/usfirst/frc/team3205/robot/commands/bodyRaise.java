@@ -22,14 +22,15 @@ public class bodyRaise extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.bodyIsUp()){
-    		Robot.arm.bodyStop(); 
-    	}
+//    	if(Robot.arm.bodyIsUp()){
+//    		Robot.arm.bodyStop(); 
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.bodyIsUp();
+//        return Robot.arm.bodyIsUp();
+    	return false; 
     }
 
     // Called once after isFinished returns true

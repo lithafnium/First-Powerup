@@ -25,29 +25,30 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	
-	// Drive train 
-		public static final int FRONT_LEFT_DRIVETRAIN_MOTOR = 6; 
-		public static final int BACK_LEFT_DRIVETRAIN_MOTOR = 9; 
+	// Drive train ALL SET
+		public static final int FRONT_LEFT_DRIVETRAIN_MOTOR = 2; 
+		public static final int BACK_LEFT_DRIVETRAIN_MOTOR = 3; 
 
-		public static final int FRONT_RIGHT_DRIVETRAIN_MOTOR = 3; 
-		public static final int BACK_RIGHT_DRIVETRAIN_MOTOR = 2; 
+		public static final int FRONT_RIGHT_DRIVETRAIN_MOTOR = 0; 
+		public static final int BACK_RIGHT_DRIVETRAIN_MOTOR = 1; 
 		
 		public static final int LEFT_ENCODER_ONE = 0; 
 		public static final int LEFT_ENCODER_TWO = 1; 
 		
-		public static final int RIGHT_ENCODER_ONE = 0; 
-		public static final int RIGHT_ENCODER_TWO = 1; 
+		public static final int RIGHT_ENCODER_ONE = 2; 
+		public static final int RIGHT_ENCODER_TWO = 3; 
 		
 		
 		
-	// Arm
-		public static final int BODY_MOTOR_ONE = 1; 
-		public static final int BODY_MOTOR_TWO = 1; 
+	// Arm BODY AND ARMS ALL SET 
+		public static final int BODY_MOTOR_ONE = 8; 
+		public static final int BODY_MOTOR_TWO = 9; 
 
-		public static final int ARM_MOTOR = 2; 
+		public static final int ARM_MOTOR = 0; 
+
 		
-		public static final int BODY_ENCODER_PORT_ONE = 0; 
-		public static final int BODY_ENCODER_PORT_TWO = 1; 
+		public static final int BODY_ENCODER_PORT_ONE = 4; 
+		public static final int BODY_ENCODER_PORT_TWO = 5; 
 		
 		public static final int BODY_UP_SWITCH = 0; 
 		public static final int BODY_DOWN_SWITCH = 1;
@@ -73,7 +74,7 @@ public class RobotMap {
 		public static final int CLIMBER_ONE = 0; 
 		public static final int CLIMBER_TWO = 1; 
 		
-		public static final int CLAW = 0; 
+		public static final int hook = 7; 
 		
 		
 	// Auto 

@@ -17,19 +17,20 @@ public class bodyLower extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arm.raiseBody();
+    	Robot.arm.lowerBody();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.bodyIsDown()){
-    		Robot.arm.bodyStop();
-    	}
+//    	if(Robot.arm.bodyIsDown()){
+//    		Robot.arm.bodyStop();
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.bodyIsDown();
+//        return Robot.arm.bodyIsDown();
+    	return false; 
     }
 
     // Called once after isFinished returns true

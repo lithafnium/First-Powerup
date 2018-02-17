@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
 
 	public ADXRS450_Gyro gyroSensor; 
 
-	public boolean backwards = false; 
+	public boolean backwards = true; 
 
 //	RobotDrive robotDrive; 
 	DifferentialDrive robotDrive; 
@@ -59,7 +59,6 @@ public class DriveTrain extends Subsystem {
 
 
 		robotDrive = new DifferentialDrive(left, right); 
-//		robotDrive = new RobotDrive(topLeft, bottomLeft,  topRight, bottomRight); 
 		robotDrive.setSafetyEnabled(false);
 		
 		gyroSensor = new ADXRS450_Gyro(); 
@@ -68,10 +67,6 @@ public class DriveTrain extends Subsystem {
 
 
 	}
-//	
-//	public Sendable getGyro() {
-//		return gyroSensor;
-//	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -136,8 +131,8 @@ public class DriveTrain extends Subsystem {
 		//SmartDashboard.putNumber("Drive Encoder One - Right Side", getEncoderOne());
 
 		SmartDashboard.putBoolean("Backwards:" , backwards);  
-    	SmartDashboard.putNumber("Body Encoder:", getLeft()); 
-    	SmartDashboard.putNumber("Body Encoder:", getRight()); 
+    	SmartDashboard.putNumber("Body Encoder Left:", getLeft()); 
+    	SmartDashboard.putNumber("Body Encoder Right:", getRight()); 
     	
     	SmartDashboard.putNumber("Angle:", getAngle()); 
 
