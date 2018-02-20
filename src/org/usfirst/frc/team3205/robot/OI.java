@@ -11,9 +11,15 @@ package org.usfirst.frc.team3205.robot;
 import org.usfirst.frc.team3205.robot.commands.armLower;
 import org.usfirst.frc.team3205.robot.commands.armRaise;
 import org.usfirst.frc.team3205.robot.commands.autoAlign;
+import org.usfirst.frc.team3205.robot.commands.autoDriveForward;
+import org.usfirst.frc.team3205.robot.commands.autoDriveForwardNoPID;
 import org.usfirst.frc.team3205.robot.commands.bodyLower;
 import org.usfirst.frc.team3205.robot.commands.bodyRaise;
+import org.usfirst.frc.team3205.robot.commands.brakeOff;
+import org.usfirst.frc.team3205.robot.commands.brakeOn;
 import org.usfirst.frc.team3205.robot.commands.climb;
+import org.usfirst.frc.team3205.robot.commands.positionScale;
+import org.usfirst.frc.team3205.robot.commands.positionStart;
 import org.usfirst.frc.team3205.robot.commands.toggleCameras;
 import org.usfirst.frc.team3205.robot.commands.toggleClaw;
 import org.usfirst.frc.team3205.robot.commands.toggleDirections;
@@ -107,8 +113,16 @@ public class OI {
 		c7.whileHeld(new bodyLower()); 
 		
 		c1.whenPressed(new toggleClaw());
-//		c2.whenPressed(new toggleCameras());
+		c2.whenPressed(new toggleCameras());
 		c3.whileHeld(new climb()); 
+		
+		c4.whenPressed(new positionStart());
+		c9.whenPressed(new positionScale()); 
+//		c10.whenPressed(new autoAlign(-90));
+		c10.whenPressed(new autoDriveForwardNoPID(-2900));
+		//c10.whenPressed(new autoDriveForward(-2900)); 
+//		c6.whenPressed(new brakeOn());
+//		c8.whenPressed(new brakeOff());
 
 
 	

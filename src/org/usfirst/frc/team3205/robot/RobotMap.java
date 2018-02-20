@@ -39,19 +39,45 @@ public class RobotMap {
 		public static final int RIGHT_ENCODER_TWO = 3; 
 		
 		
+	// ARM POSITIONS: 
+//		public static final int BODY_DOWN_LIMIT = 10; 
+//		public static final int BODY_UP_LIMIT = 4200; 
 		
+		public class startPos{
+			public static final int armLow = -9900; 
+			public static final int armHigh = -9500; 
+			
+			public static final int bodyLow = 1000; 
+			public static final int bodyHigh = 1200; 
+
+		}
+		
+		public class switchPos{
+			public static final int armLow = -11500; 
+			public static final int armHigh = -11300; 
+			
+			public static final int bodyLow = 1700; 
+			public static final int bodyHigh = 2000; 
+		}
+		
+		public class scalePos{
+			public static final int BODY_UP_LIMIT = 4200; 
+
+		}
+		
+		public static boolean arm_move = true; 
 	// Arm BODY AND ARMS ALL SET 
 		public static final int BODY_MOTOR_ONE = 8; 
 		public static final int BODY_MOTOR_TWO = 9; 
 
-		public static final int ARM_MOTOR = 0; 
+		public static final int ARM_MOTOR = 2; 
 
 		
 		public static final int BODY_ENCODER_PORT_ONE = 4; 
-		public static final int BODY_ENCODER_PORT_TWO = 5; 
+		public static final int BODY_ENCODER_PORT_TWO = 7;//5 
 		
-		public static final int BODY_UP_SWITCH = 0; 
-		public static final int BODY_DOWN_SWITCH = 1;
+		public static final int BODY_UP_SWITCH = 5; 
+		public static final int BODY_DOWN_SWITCH = 6;
 		public static final int ARM_UP_SWITCH = 0; 
 		public static final int ARM_DOWN_SWITCH = 1; 
 		
@@ -62,13 +88,15 @@ public class RobotMap {
 		public static final int PNEUMATIC = 3; 
 		public static boolean open = true; 
 		
+		public static final int BRAKE = 2; 
+		
 		
 	// vision 
 		public static boolean camOneStart = true; 
 		public static boolean camTwoStart = true; 
 		
 	// Climber 
-		public static final int CLIMBER = 0; 
+		public static final int CLIMBER = 1; 
 		public static final double CLIMB_SPEED = 0.5; 
 		
 		public static final int CLIMBER_ONE = 0; 
@@ -79,7 +107,7 @@ public class RobotMap {
 		
 	// Auto 
 		public static final double kP = 0.5; 
-		public static final double kI = 0.3; 
+		public static final double kI = 0.4; 
 		public static final double kD = 0.4; 
 		
 		public static final double TOLERANCE = 0.5; 
@@ -98,7 +126,7 @@ public class RobotMap {
 		
 		// left auto ditsances --> when we are placed on the left side
 		public class placedLeft{
-			public static final double DRIVE_FORWARD = 0.0;  // drive forward to the forward position
+			public static final double DRIVE_FORWARD = -1200;  // drive forward to the forward position
 			public static final double DRIVE_FORWARD_FAR = 0.0;  // drive forward to the forward position
 			
 			public static final double DRIVE_RIGHT = 0.0; // if we are placed on the right side
@@ -118,7 +146,7 @@ public class RobotMap {
 		
 		
 		public class AutoDistances{
-			public static final double kP = 0.0; 
+			public static final double kP = 0.2; 
 			public static final double kI = 0.0; 
 
 			public static final double kD = 0.0; 

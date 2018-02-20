@@ -39,16 +39,18 @@ public class Arm extends Subsystem {
 		body1 = new Talon(RobotMap.BODY_MOTOR_ONE); 
 		body2 = new Talon(RobotMap.BODY_MOTOR_TWO); 
 
-//		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
+		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
 		
-//		bodyUp = new DigitalInput(RobotMap.BODY_UP_SWITCH); 
-//		bodyDown = new DigitalInput(RobotMap.BODY_DOWN_SWITCH); 
+		bodyUp = new DigitalInput(RobotMap.BODY_UP_SWITCH); 
+		bodyDown = new DigitalInput(RobotMap.BODY_DOWN_SWITCH); 
 //		armUp = new DigitalInput(RobotMap.ARM_UP_SWITCH); 
 //		armDown = new DigitalInput(RobotMap.ARM_DOWN_SWITCH); 
 
 		
 		
 		arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		bodyEncoder.reset(); 
+		arm.getSensorCollection().setQuadraturePosition(0, 10); 
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -56,14 +58,14 @@ public class Arm extends Subsystem {
     }
     
     public void raiseBody(){
-    	body1.set(0.8);
-    	body2.set(0.8);
+    	body1.set(0.3);
+    	body2.set(0.3);
 
     }
     
     public void lowerBody(){
-    	body1.set(-0.8);
-    	body2.set(-0.8);
+    	body1.set(-0.3);
+    	body2.set(-0.3);
 
     }
     public void bodyStop(){
@@ -72,7 +74,8 @@ public class Arm extends Subsystem {
 
     }
     public void moveArm(double distance){
-    	arm.set(ControlMode.Position, distance);
+    		arm.set(ControlMode.Position, distance);
+    	
     }
     public void raiseArm(){
     	arm.set(ControlMode.PercentOutput, 0.5);
@@ -117,18 +120,27 @@ public class Arm extends Subsystem {
     	return arm.getSensorCollection().getQuadraturePosition();
     }
     
-    public void resetEncoder(){
+    public void resetBodyEncoder(){
     	bodyEncoder.reset();
     }
+    
+    public void resetArmEncoder(){
+    	arm.getSensorCollection().setQuadraturePosition(0, 10); 
+    }
     public void updateSmartDashboard(){
-//    	SmartDashboard.putBoolean("Body Up:", bodyIsUp()); 
-//    	SmartDashboard.putBoolean("Body Down:", bodyIsDown()); 
+    	SmartDashboard.putBoolean("Body Up:", bodyIsUp()); 
+    	SmartDashboard.putBoolean("Body Down:", bodyIsDown()); 
 //    	
-//    	SmartDashboard.putBoolean("Arm Up:", armFwd()); 
-//    	SmartDashboard.putBoolean("Arm Down:", armRev()); 
+    	SmartDashboard.putBoolean("Arm Up:", armFwd()); 
+    	SmartDashboard.putBoolean("Arm Down:", armRev()); 
     	
     	SmartDashboard.putNumber("Body Encoder:", getBodyEncoder()); 
     	SmartDashboard.putNumber("Arm Encoder:", getArmEncoder()); 
+    	
+    	SmartDashboard.putBoolean("Can Arm move:", RobotMap.arm_move); 
+    	SmartDashboard.putNumber("CLASS TESTING", RobotMap.startPos.armHigh); 
+    	SmartDashboard.putNumber("CLASS TESTING", RobotMap.startPos.armLow); 
+
 
     	
     	

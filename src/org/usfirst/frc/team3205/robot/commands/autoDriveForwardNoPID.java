@@ -21,8 +21,12 @@ public class autoDriveForwardNoPID extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.driveCertainAmounts(0.5, 0.5);
-    
+    	if(distance < encoderCount){
+    		Robot.driveTrain.driveCertainAmounts(0.612, 0.6);
+    	}
+    	else{
+    		Robot.driveTrain.driveCertainAmounts(-0.612, -0.6);
+    	}
    
     }
 
@@ -32,7 +36,7 @@ public class autoDriveForwardNoPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.driveTrain.getLeft() + Robot.driveTrain.getRight())/2 - encoderCount >= distance;
+        return Math.abs((Robot.driveTrain.getLeft() + Robot.driveTrain.getRight())/2) >= Math.abs(distance);
     }
 
     // Called once after isFinished returns true

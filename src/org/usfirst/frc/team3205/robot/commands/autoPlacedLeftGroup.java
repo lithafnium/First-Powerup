@@ -28,32 +28,45 @@ public class autoPlacedLeftGroup extends CommandGroup {
         // arm.
     	
     	// if the robot is placed on the left side and the switch is on the left side 
+    	System.out.println("asdf"); 
     	if(RobotMap.switchLeft){
-    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_FORWARD));
+    		System.out.println("SWITCH IS LEFT"); 
+    		addSequential(new clawClose()); 
+    		addSequential(new armRaise()); 
+    	
+    		addSequential(new autoDriveForwardNoPID(-2900));
     		// addSequential(new autoDriveForwardNoPID(RobotMabp.placedLeft.DRIVE_FORWARD); 
-    		addSequential(new autoAlign(90.0)); 
-    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
-    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_RIGHT)); 
+    		addSequential(new autoAlign(-90.0)); 
+    		addSequential(new autoDriveForwardNoPID(-3700));
+
+    		addSequential(new armRaise()); 
+    		addSequential(new bodyRaise()); 
+
+
+
+//    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
+    		
+//    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_RIGHT)); 
     		addSequential(new clawOpen()); 
 
     		
     	}
-    	else{ // RobotMap.switchRight 
+    	//else{ // RobotMap.switchRight 
         	// if the robot is placed on the left side and the switch is on the right side 
 
-    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
-    		// addSequential(new autoDriveForwardNoPID(RobotMabp.placedLeft.DRIVE_FORWARD_FAR); 
-
-    		addSequential(new autoAlign(90.0)); 
-    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_RIGHT_FAR)); 
-    		addSequential(new autoAlign(90.0)); 
-    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
-    		addSequential(new autoDriveForward(RobotMap.DRIVE_SHORT)); 
-    		addSequential(new clawOpen()); 
-
-
-    		addSequential(new clawOpen()); 
+//    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
+//    		// addSequential(new autoDriveForwardNoPID(RobotMabp.placedLeft.DRIVE_FORWARD_FAR); 
+//
+//    		addSequential(new autoAlign(90.0)); 
+//    		addSequential(new autoDriveForward(RobotMap.placedLeft.DRIVE_RIGHT_FAR)); 
+//    		addSequential(new autoAlign(90.0)); 
+//    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
+//    		addSequential(new autoDriveForward(RobotMap.DRIVE_SHORT)); 
+//    		addSequential(new clawOpen()); 
+//
+//
+//    		addSequential(new clawOpen()); 
     		
-    	}
+    	//}
     }
 }

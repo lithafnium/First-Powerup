@@ -43,6 +43,8 @@ public class autoDriveForward extends Command {
 			public void pidWrite(double output) {
 				// TODO Auto-generated method stub
 				Robot.driveTrain.setLeftMotors(output);
+	    		SmartDashboard.putNumber("Left Motor Output:", output); 
+
 				
 			}
     	}; 
@@ -51,14 +53,15 @@ public class autoDriveForward extends Command {
 			public void pidWrite(double output) {
 				// TODO Auto-generated method stub
 				Robot.driveTrain.setRightMotors(output);
+	    		SmartDashboard.putNumber("Right Motor Output:", output); 
 
 				
 			}
     	}; 
     	leftController = new PIDController(kP, kI, kD, Robot.driveTrain.leftEncoder, leftMotorOutput); 
     	rightController = new PIDController(kP, kI, kD, Robot.driveTrain.rightEncoder, rightMotorOutput);
-    	leftController.setInputRange(-5000.0, 5000.0);
-    	rightController.setInputRange(-5000.0, 5000.0);
+//    	leftController.setInputRange(-5000.0, 5000.0);
+//    	rightController.setInputRange(-5000.0, 5000.0);
     	
     	leftController.setOutputRange(-RobotMap.SPEED, RobotMap.SPEED);
     	rightController.setOutputRange(-RobotMap.SPEED, RobotMap.SPEED);

@@ -18,6 +18,8 @@ import org.usfirst.frc.team3205.robot.commands.autoDriveForward;
 import org.usfirst.frc.team3205.robot.commands.autoPlacedLeftGroup;
 import org.usfirst.frc.team3205.robot.commands.autoPlacedRightGroup;
 import org.usfirst.frc.team3205.robot.commands.autoDriveForwardNoPID;
+import org.usfirst.frc.team3205.robot.commands.encoderArmReset;
+import org.usfirst.frc.team3205.robot.commands.encoderBodyReset;
 import org.usfirst.frc.team3205.robot.commands.encoderDrivetrainReset;
 import org.usfirst.frc.team3205.robot.commands.encoderGyroReset;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
@@ -54,20 +56,34 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		climby = new Climber(); 
-		//vision = new Vision(); 
+		vision = new Vision(); 
 		driveTrain = new DriveTrain(); 
 		arm = new Arm(); 
 		grabby = new Claw(); 
 		oi = new OI();
+		
+		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
+		// if the switch is on the left side of the field 
+		if(RobotMap.gameData.charAt(0) == 'L'){
+			System.out.println("LEFT"); 
+			RobotMap.switchLeft = true; 
+		} else {RobotMap.switchRight = true; System.out.println("RIGHT");} 
 		m_chooser.addDefault("Default Auto", new autoDriveForward(RobotMap.DRIVE_SHORT));
 		m_chooser.addObject("Auto Drive foward (rip)", new autoDriveForwardNoPID(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
-		m_chooser.addObject("Robot placed left", new autoPlacedLeftGroup()); 
-		m_chooser.addObject("Robot placed right", new autoPlacedRightGroup()); 
+		m_chooser.addObject("Robot left", new autoPlacedLeftGroup()); 
+		m_chooser.addObject("Robot right", new autoPlacedRightGroup()); 
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		SmartDashboard.putData("Reset Gyro", new encoderGyroReset());
 		SmartDashboard.putData("Reset Drivetrain", new encoderDrivetrainReset());
+		SmartDashboard.putData("Reset Arm", new encoderArmReset());
+
+		SmartDashboard.putData("Reset Body", new encoderBodyReset());
+		
+		
+
 	}
 
 	/**
@@ -102,12 +118,7 @@ public class Robot extends TimedRobot {
 		m_autonomousCommand = m_chooser.getSelected();
 		
 		// gets the game data
-		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
-		// if the switch is on the left side of the field 
-		if(RobotMap.gameData.charAt(0) == 'L'){
-			RobotMap.switchLeft = true; 
-		} else RobotMap.switchRight = true; 
 		
 
 		/*
@@ -119,6 +130,7 @@ public class Robot extends TimedRobot {
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
+			System.out.println("START"); 
 			m_autonomousCommand.start();
 		}
 	}
@@ -162,6 +174,6 @@ public class Robot extends TimedRobot {
 	public void updateSmartDashboard(){
 		driveTrain.updateSmartDashboard();
 		grabby.updateSmartDashboard();
-		//arm.updateSmartDashboard(); 
+		arm.updateSmartDashboard(); 
 	}
 }

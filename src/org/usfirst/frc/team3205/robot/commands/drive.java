@@ -23,7 +23,11 @@ public class drive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
+		RobotMap.arm_move = (Robot.arm.getBodyEncoder() > 10 && Robot.arm.getBodyEncoder() < 4200) ? false : true; 
+//		if(Robot.arm.getBodyEncoder() > 10 && Robot.arm.getBodyEncoder() < 4200 ){
+//			RobotMap.arm_move = false; 
+//		}
+//		else RobotMap.arm_move = true; 
 		Robot.driveTrain.driveNow(OI.left, OI.right);
 		//Robot.driveTrain.backwards(OI.right, OI.left); 
 	}

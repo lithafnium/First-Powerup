@@ -7,41 +7,58 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class autoRaiseArm extends Command {
-	double distance; 
+public class autoMoveBody extends Command {
+	double position; 
 	double encoderCount; 
-    public autoRaiseArm(double distance) {
+	boolean up; 
+	boolean down; 
+    public autoMoveBody(double position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm); 
-    	this.distance = distance;
-    	encoderCount = Robot.arm.getArmEncoder();
+    	this.position = position; 
+    	encoderCount = Robot.arm.getBodyEncoder();
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arm.moveArm(distance);
+    	Robot.grabby.brakeOff(); 
+
+    	if(position < encoderCount){
+    		down = true; 
+    		Robot.arm.lowerBody();
+    	} else{
+    		Robot.arm.raiseBody();
+    		up = true; 
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.armFwd()) Robot.arm.armStop();
+    	if((Robot.arm.bodyIsUp() && up)|| (Robot.arm.bodyIsDown() && down)) Robot.arm.bodyStop();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.armFwd() || Robot.arm.getArmEncoder() - encoderCount >= distance;
+        return (Robot.arm.bodyIsUp() && up) || (Robot.arm.bodyIsDown() && down) || (Math.abs(Robot.arm.getBodyEncoder()) >= Math.abs(position));
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.arm.armStop();
+    	Robot.grabby.brakeOn(); 
+
+    	Robot.arm.bodyStop();
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.arm.armStop();
+    	Robot.grabby.brakeOn(); 
+
+    	Robot.arm.bodyStop();
 
     }
 }

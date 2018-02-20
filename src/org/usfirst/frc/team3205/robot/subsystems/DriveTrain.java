@@ -44,6 +44,7 @@ public class DriveTrain extends Subsystem {
 		//Encoders
 		leftEncoder = new Encoder(RobotMap.LEFT_ENCODER_ONE, RobotMap.LEFT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
 		rightEncoder = new Encoder(RobotMap.RIGHT_ENCODER_ONE, RobotMap.RIGHT_ENCODER_TWO, false, Encoder.EncodingType.k4X);
+		rightEncoder.setReverseDirection(true);
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
@@ -131,8 +132,8 @@ public class DriveTrain extends Subsystem {
 		//SmartDashboard.putNumber("Drive Encoder One - Right Side", getEncoderOne());
 
 		SmartDashboard.putBoolean("Backwards:" , backwards);  
-    	SmartDashboard.putNumber("Body Encoder Left:", getLeft()); 
-    	SmartDashboard.putNumber("Body Encoder Right:", getRight()); 
+    	SmartDashboard.putNumber("Drivetrain Encoder Left:", getLeft()); 
+    	SmartDashboard.putNumber("Drivetrain Encoder Right:", getRight()); 
     	
     	SmartDashboard.putNumber("Angle:", getAngle()); 
 

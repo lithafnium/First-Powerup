@@ -29,14 +29,27 @@ public class autoPlacedRightGroup extends CommandGroup {
     	// if the switch is on the left and the robot is placed on the right 
     	// if the robot is placed on the right side and the switch is on the right side 
     	if(RobotMap.switchRight){
-    		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
-    		//    		addSequentialNoPID(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
+    		
+    		addSequential(new clawClose()); 
+    		addSequential(new armRaise()); 
+    	
+    		addSequential(new autoDriveForwardNoPID(-2900));
+    		// addSequential(new autoDriveForwardNoPID(RobotMabp.placedLeft.DRIVE_FORWARD); 
+    		addSequential(new autoAlign(90.0)); 
+    		addSequential(new autoDriveForwardNoPID(-3700));
 
-    		addSequential(new autoAlign(-90.0)); 
-    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
-
-    		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_LEFT)); 
+    		addSequential(new armRaise()); 
+    		addSequential(new bodyRaise()); 
+ 
     		addSequential(new clawOpen()); 
+//    		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
+//    		//    		addSequentialNoPID(new autoDriveForward(RobotMap.placedRight.DRIVE_FORWARD));
+//
+//    		addSequential(new autoAlign(-90.0)); 
+//    		addSequential(new autoRaiseBody(RobotMap.RAISE_ARM)); 
+//
+//    		addSequential(new autoDriveForward(RobotMap.placedRight.DRIVE_LEFT)); 
+//    		addSequential(new clawOpen()); 
 
     		
     	}

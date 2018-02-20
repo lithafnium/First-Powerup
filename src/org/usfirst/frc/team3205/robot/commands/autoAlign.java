@@ -33,6 +33,7 @@ public class autoAlign extends Command implements PIDOutput{
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.resetGyro();
     	double kP = RobotMap.kP;
     	double kI = RobotMap.kI; 
     	double kD = RobotMap.kD; 
@@ -68,7 +69,7 @@ public class autoAlign extends Command implements PIDOutput{
 //        if(controller.onTarget()) return true; 
         
 //        return System.currentTimeMillis() > onTargetMillis + 50; 
-        return controller.onTarget(); 
+        return controller.onTarget() || System.currentTimeMillis() - startTimeMillis > 4000 ; 
     }
 
     // Called once after isFinished returns true
