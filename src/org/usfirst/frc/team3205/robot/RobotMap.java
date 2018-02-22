@@ -123,6 +123,8 @@ public class RobotMap {
 		public static double DRIVE_SHORT = 0.0; 
 		public static boolean switchLeft = false; 
 		public static boolean switchRight = false; 
+		public static boolean robotPlacedLeft = false; 
+		public static boolean robotPlacedRight = false; 
 		
 		// left auto ditsances --> when we are placed on the left side
 		public class placedLeft{

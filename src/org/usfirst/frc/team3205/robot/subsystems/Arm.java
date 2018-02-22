@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,35 +22,24 @@ public class Arm extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	SpeedController body1;
-	SpeedController body2; 
+	
 	WPI_TalonSRX arm; 
 
  
-	Encoder bodyEncoder;
 	
-	DigitalInput bodyUp; 
-	DigitalInput bodyDown; 
 	
 	DigitalInput armUp; 
 	DigitalInput armDown; 
 
 	public Arm(){
 		arm = new WPI_TalonSRX(RobotMap.ARM_MOTOR); 
-		body1 = new Talon(RobotMap.BODY_MOTOR_ONE); 
-		body2 = new Talon(RobotMap.BODY_MOTOR_TWO); 
-
-		bodyEncoder = new Encoder(RobotMap.BODY_ENCODER_PORT_ONE, RobotMap.BODY_ENCODER_PORT_TWO, false, Encoder.EncodingType.k4X);
 		
-		bodyUp = new DigitalInput(RobotMap.BODY_UP_SWITCH); 
-		bodyDown = new DigitalInput(RobotMap.BODY_DOWN_SWITCH); 
 //		armUp = new DigitalInput(RobotMap.ARM_UP_SWITCH); 
 //		armDown = new DigitalInput(RobotMap.ARM_DOWN_SWITCH); 
 
 		
 		
 		arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		bodyEncoder.reset(); 
 		arm.getSensorCollection().setQuadraturePosition(0, 10); 
 	}
     public void initDefaultCommand() {
@@ -57,22 +47,7 @@ public class Arm extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void raiseBody(){
-    	body1.set(0.3);
-    	body2.set(0.3);
-
-    }
     
-    public void lowerBody(){
-    	body1.set(-0.3);
-    	body2.set(-0.3);
-
-    }
-    public void bodyStop(){
-    	body1.set(0.0);
-    	body2.set(0.0);
-
-    }
     public void moveArm(double distance){
     		arm.set(ControlMode.Position, distance);
     	
@@ -96,13 +71,7 @@ public class Arm extends Subsystem {
 
     }
     // BODY
-    public boolean bodyIsUp(){
-    	return bodyUp.get(); 
-    }
     
-    public boolean bodyIsDown(){
-    	return bodyDown.get(); 
-    }
     // ARM
     public boolean armFwd(){
     	return arm.getSensorCollection().isFwdLimitSwitchClosed();
@@ -112,29 +81,22 @@ public class Arm extends Subsystem {
     	return arm.getSensorCollection().isRevLimitSwitchClosed();
     }
     //ENCODERS
-    public double getBodyEncoder(){
-    	return bodyEncoder.getDistance();
-    }
     
     public double getArmEncoder(){
     	return arm.getSensorCollection().getQuadraturePosition();
     }
     
-    public void resetBodyEncoder(){
-    	bodyEncoder.reset();
-    }
+    
     
     public void resetArmEncoder(){
     	arm.getSensorCollection().setQuadraturePosition(0, 10); 
     }
     public void updateSmartDashboard(){
-    	SmartDashboard.putBoolean("Body Up:", bodyIsUp()); 
-    	SmartDashboard.putBoolean("Body Down:", bodyIsDown()); 
+    	
 //    	
     	SmartDashboard.putBoolean("Arm Up:", armFwd()); 
     	SmartDashboard.putBoolean("Arm Down:", armRev()); 
     	
-    	SmartDashboard.putNumber("Body Encoder:", getBodyEncoder()); 
     	SmartDashboard.putNumber("Arm Encoder:", getArmEncoder()); 
     	
     	SmartDashboard.putBoolean("Can Arm move:", RobotMap.arm_move); 

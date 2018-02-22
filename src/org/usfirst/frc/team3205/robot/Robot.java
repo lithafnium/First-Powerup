@@ -22,7 +22,10 @@ import org.usfirst.frc.team3205.robot.commands.encoderArmReset;
 import org.usfirst.frc.team3205.robot.commands.encoderBodyReset;
 import org.usfirst.frc.team3205.robot.commands.encoderDrivetrainReset;
 import org.usfirst.frc.team3205.robot.commands.encoderGyroReset;
+import org.usfirst.frc.team3205.robot.commands.placedLeft;
+import org.usfirst.frc.team3205.robot.commands.placedRight;
 import org.usfirst.frc.team3205.robot.subsystems.Arm;
+import org.usfirst.frc.team3205.robot.subsystems.Body;
 import org.usfirst.frc.team3205.robot.subsystems.Claw;
 import org.usfirst.frc.team3205.robot.subsystems.Climber;
 import org.usfirst.frc.team3205.robot.subsystems.DriveTrain;
@@ -41,6 +44,7 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 
 	public static DriveTrain driveTrain;
+	public static Body body; 
 	public static Arm arm; 
 	public static Claw grabby; 
 	public static Vision vision; 
@@ -55,6 +59,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		body = new Body(); 
 		climby = new Climber(); 
 		vision = new Vision(); 
 		driveTrain = new DriveTrain(); 
@@ -65,14 +70,12 @@ public class Robot extends TimedRobot {
 		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
 		// if the switch is on the left side of the field 
-		if(RobotMap.gameData.charAt(0) == 'L'){
-			System.out.println("LEFT"); 
-			RobotMap.switchLeft = true; 
-		} else {RobotMap.switchRight = true; System.out.println("RIGHT");} 
+		
 		m_chooser.addDefault("Default Auto", new autoDriveForward(RobotMap.DRIVE_SHORT));
 		m_chooser.addObject("Auto Drive foward (rip)", new autoDriveForwardNoPID(RobotMap.placedLeft.DRIVE_FORWARD_FAR));
-		m_chooser.addObject("Robot left", new autoPlacedLeftGroup()); 
-		m_chooser.addObject("Robot right", new autoPlacedRightGroup()); 
+		
+		m_chooser.addObject("Robot left", new placedLeft()); 
+		m_chooser.addObject("Robot right", new placedRight());
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -117,7 +120,16 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
 		
+		
 		// gets the game data
+		if(RobotMap.gameData.charAt(0) == 'L'){
+			System.out.println("LEFT"); 
+			RobotMap.switchLeft = true; 
+		} else {
+			RobotMap.switchRight = true; System.out.println("RIGHT");
+		} 
+		Command leftGroup = new autoPlacedLeftGroup();
+		Command rightGroup = new autoPlacedRightGroup(); 
 		
 		
 
@@ -132,6 +144,10 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			System.out.println("START"); 
 			m_autonomousCommand.start();
+			if(RobotMap.robotPlacedLeft){
+				leftGroup.start(); 
+			} else rightGroup.start(); 
+			
 		}
 	}
 
@@ -175,5 +191,6 @@ public class Robot extends TimedRobot {
 		driveTrain.updateSmartDashboard();
 		grabby.updateSmartDashboard();
 		arm.updateSmartDashboard(); 
+		body.updateSmartDashboard();
 	}
 }

@@ -15,9 +15,9 @@ public class autoMoveBody extends Command {
     public autoMoveBody(double position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm); 
+    	requires(Robot.body); 
     	this.position = position; 
-    	encoderCount = Robot.arm.getBodyEncoder();
+    	encoderCount = Robot.body.getBodyEncoder();
 
     }
 
@@ -27,29 +27,29 @@ public class autoMoveBody extends Command {
 
     	if(position < encoderCount){
     		down = true; 
-    		Robot.arm.lowerBody();
+    		Robot.body.lowerBody();
     	} else{
-    		Robot.arm.raiseBody();
+    		Robot.body.raiseBody();
     		up = true; 
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if((Robot.arm.bodyIsUp() && up)|| (Robot.arm.bodyIsDown() && down)) Robot.arm.bodyStop();
+    	if((Robot.body.bodyIsUp() && up)|| (Robot.body.bodyIsDown() && down)) Robot.body.bodyStop();
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.arm.bodyIsUp() && up) || (Robot.arm.bodyIsDown() && down) || (Math.abs(Robot.arm.getBodyEncoder()) >= Math.abs(position));
+        return (Robot.body.bodyIsUp() && up) || (Robot.body.bodyIsDown() && down) || (Math.abs(Robot.body.getBodyEncoder()) >= Math.abs(position));
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop();
+    	Robot.body.bodyStop();
 
     }
 
@@ -58,7 +58,7 @@ public class autoMoveBody extends Command {
     protected void interrupted() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop();
+    	Robot.body.bodyStop();
 
     }
 }

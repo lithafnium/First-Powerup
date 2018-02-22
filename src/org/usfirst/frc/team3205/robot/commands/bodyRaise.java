@@ -12,7 +12,7 @@ public class bodyRaise extends Command {
     public bodyRaise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm); 
+    	requires(Robot.body); 
     	
 
     }
@@ -21,21 +21,21 @@ public class bodyRaise extends Command {
     protected void initialize() {
     	Robot.grabby.brakeOff(); 
 
-    	if(!Robot.arm.bodyIsUp()){
-    		Robot.arm.raiseBody();
+    	if(!Robot.body.bodyIsUp()){
+    		Robot.body.raiseBody();
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.bodyIsUp()){
-    		Robot.arm.bodyStop(); 
+    	if(Robot.body.bodyIsUp()){
+    		Robot.body.bodyStop(); 
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.bodyIsUp();
+        return Robot.body.bodyIsUp();
 //    	return false; 
     }
 
@@ -43,7 +43,7 @@ public class bodyRaise extends Command {
     protected void end() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop(); 
+    	Robot.body.bodyStop(); 
 
     }
 
@@ -52,7 +52,7 @@ public class bodyRaise extends Command {
     protected void interrupted() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop(); 
+    	Robot.body.bodyStop(); 
 
     }
 }

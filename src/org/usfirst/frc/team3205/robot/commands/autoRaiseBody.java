@@ -13,36 +13,36 @@ public class autoRaiseBody extends Command {
     public autoRaiseBody(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.arm); 
+    	requires(Robot.body); 
 
     	this.angle = angle; 
-    	encoderCount = Robot.arm.getBodyEncoder();
+    	encoderCount = Robot.body.getBodyEncoder();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.grabby.brakeOff(); 
 
-    	Robot.arm.raiseBody();
+    	Robot.body.raiseBody();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.arm.bodyIsUp()) Robot.arm.bodyStop();
+    	if(Robot.body.bodyIsUp()) Robot.body.bodyStop();
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.bodyIsUp() || Robot.arm.getBodyEncoder() >= angle;
+        return Robot.body.bodyIsUp() || Robot.body.getBodyEncoder() >= angle;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop(); 
+    	Robot.body.bodyStop(); 
 
     }
 
@@ -51,7 +51,7 @@ public class autoRaiseBody extends Command {
     protected void interrupted() {
     	Robot.grabby.brakeOn(); 
 
-    	Robot.arm.bodyStop(); 
+    	Robot.body.bodyStop(); 
 
     }
 }
